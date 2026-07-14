@@ -15,7 +15,7 @@ The Serializer subsystem shall:
 - Serialize platform data.
 - Deserialize platform data.
 - Preserve data fidelity during transformation.
-- Support version-compatible data formats.
+- Support compatible serialized formats across platform versions.
 - Provide deterministic serialization behavior.
 
 ## Ownership
