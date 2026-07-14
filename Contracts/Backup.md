@@ -2,22 +2,21 @@
 
 ## Purpose
 
-This document defines the architectural contract for the Backup subsystem of the PA platform.
+This document defines the architectural contract for backup management within the PA platform.
 
-The Backup subsystem is responsible for creating, exporting, importing, and restoring complete platform data while preserving integrity and compatibility.
+The Backup subsystem is responsible for producing and restoring portable platform backups while remaining independent from business logic, cloud providers, user interface, and application features.
 
-Backup belongs to the shared platform infrastructure and must remain independent from application features.
+Backup exists to provide reliable platform recovery and data portability.
 
 ## Responsibilities
 
 The Backup subsystem shall:
 
-- Create complete platform backups.
-- Restore previously created backups.
+- Create platform backups.
+- Restore platform backups.
+- Coordinate backup workflows.
 - Validate backup integrity.
-- Coordinate import and export operations.
-- Preserve platform data consistency.
-- Support long-term data portability.
+- Support version-compatible backup formats.
 
 ## Ownership
 
@@ -26,13 +25,14 @@ Backup owns:
 - Backup generation.
 - Backup restoration.
 - Backup validation.
-- Backup package management.
+- Backup workflow coordination.
 
 Backup does not own:
 
+- Data persistence.
+- Data serialization.
+- Cloud synchronization.
 - Business logic.
-- Storage persistence.
-- Serialization.
 - User interface.
 - Runtime coordination.
 
@@ -40,11 +40,11 @@ Backup does not own:
 
 The Backup subsystem guarantees:
 
-- Consistent backup behavior.
-- Complete platform data preservation.
-- Predictable restore operations.
-- Feature-independent backup services.
-- Reusable infrastructure for all platform modules.
+- Reliable backup creation.
+- Reliable backup restoration.
+- Consistent recovery behavior.
+- Platform-independent backup formats.
+- Stable backup contracts.
 
 ## Allowed Dependencies
 
@@ -56,6 +56,7 @@ Backup may depend on:
 
 Backup must not depend on:
 
+- Cloud.
 - Barcode.
 - Bookmark.
 - Notebook.
@@ -65,22 +66,22 @@ Backup must not depend on:
 
 ## Required Behavior
 
-Every platform feature requiring persistent backup should use the Backup subsystem.
+Platform modules requiring backup functionality should use the Backup subsystem rather than implementing custom backup logic.
 
-Backup implementations should remain interchangeable without affecting business logic.
+Backup implementations should remain independent from cloud providers and storage technologies whenever practical.
 
 ## Forbidden Actions
 
 Backup must never:
 
+- Execute business rules.
+- Synchronize cloud providers.
 - Render user interface.
-- Execute feature workflows.
-- Apply business rules.
 - Reference feature-specific components.
 - Manage application runtime state.
 
 ## Evolution Rules
 
-Future backup implementations may introduce new storage targets or transport mechanisms while preserving the responsibilities defined in this contract.
+Future backup implementations may introduce additional backup strategies, compression methods, or recovery mechanisms while preserving the architectural responsibilities defined in this contract.
 
-Backward compatibility with existing backup formats should be maintained whenever practical.
+Implementation-specific backup behavior should remain isolated behind stable platform interfaces.
