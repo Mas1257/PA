@@ -18,9 +18,19 @@ Workspace enables the platform to save and restore its state to and from a direc
 
 Workspace belongs to the shared platform infrastructure.
 
-It sits above Storage and Backup in the dependency hierarchy and coordinates their capabilities into higher-level workflows such as save, restore, and automatic snapshot.
+It sits above Storage in the dependency hierarchy and coordinates file system persistence through its own provider abstraction.
 
 Application features do not interact with Workspace directly. They interact with platform services, and Workspace manages the persistence boundary on their behalf.
+
+## Snapshot and Export Package
+
+The platform produces two distinct artifacts from the same underlying data format.
+
+A Snapshot is an automatic, rotating local recovery point managed entirely by Workspace. Snapshots are written to a dedicated subdirectory of the user-selected workspace folder, are limited to a maximum of ten files, and the oldest is removed when the limit is reached. Snapshots are intended for local recovery and are not designed for transfer between systems. Restore from a Snapshot is coordinated by Workspace.
+
+An Export Package is a portable artifact produced on user request and delivered as a browser download. Export Packages are not subject to retention limits and may be imported on any system at any time. Export and Import are coordinated by the Backup subsystem.
+
+Both artifacts share the same serialized file format and the same schema version. The Serializer subsystem owns the format. Neither Workspace nor Backup owns the serialization schema.
 
 ## Responsibilities
 
@@ -31,12 +41,12 @@ The Workspace subsystem is responsible for:
 - Persisting and restoring workspace metadata.
 - Coordinating manual and automatic workspace saves.
 - Coordinating manual and automatic workspace restores.
-- Scheduling and executing automatic snapshots.
-- Pruning old snapshots to enforce retention limits.
+- Scheduling and executing automatic Snapshots.
+- Pruning old Snapshots to enforce retention limits.
 - Emitting workspace lifecycle events for platform listeners.
 - Abstracting the underlying file system provider.
 
-Workspace is not responsible for business logic, serialization format decisions, or user interface rendering.
+Workspace is not responsible for Export Package generation, serialization format decisions, or user interface rendering.
 
 ## Platform Dependencies
 
@@ -47,6 +57,8 @@ The current implementation depends on:
 - An internal `IndexedDB` database for persisting the directory handle across page loads.
 
 Workspace abstracts these dependencies behind its own service and provider boundaries.
+
+The internal use of IndexedDB by Workspace for its own operational state is not governed by the Storage contract, which applies to application and platform data exposed through public Storage interfaces.
 
 ## Data Ownership
 
@@ -62,6 +74,7 @@ Workspace does not own:
 
 - Application feature data.
 - Serialization of platform data.
+- Export Package generation.
 - Cloud synchronization state.
 
 ## Architectural Boundaries
@@ -76,7 +89,7 @@ Workspace exposes its capabilities through `WorkspaceService`.
 
 `WorkspaceDiagnostics` provides an isolated diagnostic and logging layer.
 
-No application feature should access file system handles, workspace metadata, or snapshot files directly.
+No application feature should access file system handles, workspace metadata, or Snapshot files directly.
 
 ## User Interaction Responsibilities
 
@@ -100,7 +113,7 @@ Application features do not depend on Workspace directly.
 
 Workspace emits lifecycle events that platform listeners may observe, such as `workspace:snapshot-dirty`, `workspace:snapshot-saved`, and `workspace:metadata-changed`.
 
-Application data is included in workspace snapshots through a platform-level data collection mechanism, not through direct feature coupling.
+Application data is included in Snapshots through a platform-level data collection mechanism, not through direct feature coupling.
 
 ## Future Evolution
 
@@ -108,6 +121,6 @@ The current implementation supports only `LocalWorkspaceProvider` using the Chro
 
 The architecture explicitly reserves space for future cloud providers behind the same provider abstraction boundary.
 
-Future phases may introduce snapshot compression, additional retention strategies, cross-tab synchronization improvements, and additional provider implementations.
+Future phases may introduce Snapshot compression, additional retention strategies, cross-tab synchronization improvements, and additional provider implementations.
 
 Provider-specific behavior should remain isolated behind the provider interface as the subsystem evolves.
