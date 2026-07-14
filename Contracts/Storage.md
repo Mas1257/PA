@@ -12,7 +12,7 @@ Storage serves as the single abstraction layer between platform modules and phys
 
 The Storage subsystem shall:
 
-- Persist platform data.
+- Persist application data supplied through stable interfaces.
 - Load platform data.
 - Update stored data.
 - Remove stored data.
@@ -25,8 +25,8 @@ Storage owns:
 
 - Persistent data access.
 - Storage abstraction.
-- Read and write operations.
-- Storage implementation selection.
+- Read operations.
+- Write operations.
 
 Storage does not own:
 
