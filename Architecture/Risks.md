@@ -79,15 +79,3 @@ The platform follows these engineering principles:
 This document should evolve together with the platform architecture.
 
 New architectural risks should be documented whenever they are identified, and existing risks should be reviewed whenever significant architectural changes occur.
-
-If you detect any contradiction between the supplied document and the current implementation or established architecture:
-
-- Do not rewrite the document.
-- Do not make assumptions.
-- Stop the task.
-- Report the inconsistency with supporting evidence.
-
-Do not modify any other files.
-
-Commit message:
-Document architectural risks
