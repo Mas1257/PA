@@ -2,57 +2,62 @@
 
 ## Purpose
 
-This document defines the architectural contract for the PA Storage subsystem.
+This document defines the architectural contract for persistent storage within the PA platform.
 
-It specifies the responsibilities, guarantees, and boundaries that every implementation of the Storage subsystem must satisfy.
+The Storage subsystem is responsible for providing reliable persistence for platform data while remaining independent from business logic, application features, and storage implementation details.
+
+Storage serves as the single abstraction layer between platform modules and physical persistence mechanisms.
 
 ## Responsibilities
 
 The Storage subsystem shall:
 
-- Persist application data.
-- Load previously stored data.
-- Update existing persistent data.
-- Delete persistent data when requested.
-- Preserve data integrity.
-- Provide a consistent persistence interface for all platform features.
+- Persist platform data.
+- Load platform data.
+- Update stored data.
+- Remove stored data.
+- Provide consistent data access.
+- Support multiple storage implementations when practical.
 
 ## Ownership
 
 Storage owns:
 
-- Persistence.
-- Storage keys.
-- Data serialization boundaries.
-- Persistent state management.
+- Persistent data access.
+- Storage abstraction.
+- Read and write operations.
+- Storage implementation selection.
 
 Storage does not own:
 
 - Business logic.
+- Serialization.
+- Backup generation.
+- Cloud synchronization.
 - User interface.
-- Feature workflows.
 - Runtime coordination.
 
 ## Guarantees
 
 The Storage subsystem guarantees:
 
-- Consistent persistence behavior.
-- Feature-independent storage services.
-- Stable data ownership.
-- Predictable read and write operations.
-- Reusable infrastructure for every platform module.
+- Reliable persistent storage.
+- Stable storage interfaces.
+- Platform-independent storage behavior.
+- Replaceable storage implementations.
+- Consistent data access semantics.
 
 ## Allowed Dependencies
 
 Storage may depend on:
 
-- Runtime environment.
-- Browser persistence APIs.
 - Platform infrastructure.
 
 Storage must not depend on:
 
+- Serializer.
+- Backup.
+- Cloud.
 - Barcode.
 - Bookmark.
 - Notebook.
@@ -62,7 +67,7 @@ Storage must not depend on:
 
 ## Required Behavior
 
-Every feature must interact with persistent data through the Storage subsystem.
+Platform modules requiring persistent storage should access data exclusively through the Storage subsystem.
 
 Storage implementations should remain interchangeable without affecting business logic.
 
@@ -70,14 +75,15 @@ Storage implementations should remain interchangeable without affecting business
 
 Storage must never:
 
+- Execute business rules.
+- Serialize application models.
+- Generate backups.
+- Synchronize cloud providers.
 - Render user interface.
-- Execute feature workflows.
-- Apply business rules.
 - Reference feature-specific components.
-- Coordinate application state outside persistence.
 
 ## Evolution Rules
 
-Future storage implementations may change internal technology or persistence mechanisms.
+Future storage implementations may introduce additional persistence technologies, optimization strategies, or storage providers while preserving the architectural responsibilities defined in this contract.
 
-However, they must continue to satisfy every responsibility and guarantee defined in this contract.
+Implementation-specific behavior should remain isolated behind stable storage interfaces.
