@@ -8,6 +8,8 @@ The Storage subsystem is responsible for providing reliable persistence for plat
 
 Storage serves as the single abstraction layer between platform modules and physical persistence mechanisms.
 
+This contract governs persistence of application and platform data exposed through public Storage interfaces. Internal persistence mechanisms used privately by platform subsystems for their own operational state do not constitute public Storage services and are not governed by this contract.
+
 ## Responsibilities
 
 The Storage subsystem shall:
@@ -67,7 +69,7 @@ Storage must not depend on:
 
 ## Required Behavior
 
-Platform modules requiring persistent storage should access data exclusively through the Storage subsystem.
+Platform modules requiring persistent storage should access application and platform data exclusively through the Storage subsystem.
 
 Storage implementations should remain interchangeable without affecting business logic.
 
