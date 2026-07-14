@@ -17,6 +17,7 @@ The Cloud subsystem shall:
 - Download backup data.
 - Coordinate cloud synchronization workflows.
 - Preserve synchronization consistency.
+- Detect synchronization conflicts.
 - Support multiple cloud providers when practical.
 
 ## Ownership
@@ -27,6 +28,7 @@ Cloud owns:
 - Remote data transfer.
 - Synchronization state.
 - Cloud provider abstraction.
+- Authentication abstraction.
 
 Cloud does not own:
 
