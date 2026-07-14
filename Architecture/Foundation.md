@@ -8,18 +8,6 @@ It establishes the core architectural principles, system boundaries, dependency 
 
 Every architectural decision should remain consistent with the principles defined in this document.
 
-## Documentation Philosophy
-
-The PA repository is organized into three distinct layers, each with a different purpose.
-
-Architecture documents define the principles and rules that govern the entire platform. They apply to both current and future implementations.
-
-Contracts define the intended architectural boundaries for each platform subsystem. They describe the target architecture that future refactoring should achieve, not necessarily the current state of the implementation.
-
-Knowledge documents describe how the platform and its subsystems actually behave in the current implementation. They reflect what exists today rather than what is planned.
-
-This separation allows the repository to serve both as a description of the current system and as a specification for its future evolution.
-
 ## Core Principles
 
 The PA platform is built upon the following principles:
@@ -77,3 +65,15 @@ The architecture is intended to support continuous expansion while preserving co
 Future platform capabilities should integrate without requiring architectural redesign.
 
 Platform capabilities should evolve without requiring feature rewrites whenever practical.
+
+## Documentation Philosophy
+
+The repository documentation is organized into three distinct layers, each serving a different purpose.
+
+Architecture documents define the governing principles and long-term design philosophy. They describe how the platform thinks, not what it does today.
+
+Contracts define the intended architectural boundaries of each subsystem. They describe the target architecture that future implementations should conform to. The current implementation may temporarily consolidate responsibilities that will be separated through planned refactoring.
+
+Knowledge documents describe the current implementation as it exists today. They reflect actual behavior, real dependencies, and present capabilities rather than architectural intent.
+
+Readers should interpret each document according to its layer. A contract is a target, not a description of today. A knowledge document is a description of today, not a constraint on tomorrow.
