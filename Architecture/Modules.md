@@ -28,7 +28,7 @@ Examples include:
 - User Interface
 - Storage
 - Folder Management
-- Workspace State
+- Workspace
 - Configuration
 - Notification Services
 
