@@ -4,58 +4,59 @@
 
 This document defines the architectural contract for serialization within the PA platform.
 
-The Serializer subsystem is responsible for transforming platform data into a stable transferable representation and restoring that representation back into application state.
+The Serializer subsystem is responsible for converting platform data between in-memory representations and portable serialized formats while remaining independent from storage, cloud services, backup mechanisms, and application features.
 
-Serialization is part of the shared platform infrastructure and must remain independent from application features.
+Serialization exists to provide a stable data transformation layer across the platform.
 
 ## Responsibilities
 
 The Serializer subsystem shall:
 
 - Serialize platform data.
-- Deserialize previously serialized data.
-- Preserve data integrity.
-- Maintain a stable serialization format.
-- Support platform backup and restore workflows.
-- Provide a common serialization mechanism for every application feature.
+- Deserialize platform data.
+- Preserve data fidelity during transformation.
+- Support version-compatible data formats.
+- Provide deterministic serialization behavior.
 
 ## Ownership
 
 Serializer owns:
 
-- Data serialization.
-- Data deserialization.
-- Serialization format.
-- Data transformation boundaries.
+- Data transformation.
+- Serialization formats.
+- Deserialization logic.
+- Data format compatibility.
 
 Serializer does not own:
 
+- Data persistence.
+- Backup generation.
+- Cloud synchronization.
 - Business logic.
-- Storage persistence.
 - User interface.
-- Feature workflows.
 - Runtime coordination.
 
 ## Guarantees
 
 The Serializer subsystem guarantees:
 
-- Consistent serialization behavior.
-- Feature-independent data transformation.
-- Stable serialization boundaries.
-- Predictable import and export operations.
-- Reusable infrastructure for all platform modules.
+- Consistent serialization results.
+- Reliable deserialization behavior.
+- Stable transformation contracts.
+- Platform-independent data formats.
+- Forward-compatible architectural evolution when practical.
 
 ## Allowed Dependencies
 
 Serializer may depend on:
 
 - Platform infrastructure.
-- Storage interfaces.
-- Shared data models.
 
 Serializer must not depend on:
 
+- Storage.
+- Backup.
+- Cloud.
 - Barcode.
 - Bookmark.
 - Notebook.
@@ -65,22 +66,23 @@ Serializer must not depend on:
 
 ## Required Behavior
 
-Every platform feature requiring import or export of persistent data should use the Serializer subsystem.
+Platform modules requiring data transformation should use the Serializer subsystem rather than implementing custom serialization logic.
 
-Serializer implementations should remain interchangeable without affecting business logic.
+Serialization formats should remain stable and implementation-independent whenever practical.
 
 ## Forbidden Actions
 
 Serializer must never:
 
+- Persist data.
+- Generate backups.
+- Synchronize cloud providers.
+- Execute business rules.
 - Render user interface.
-- Execute feature workflows.
-- Apply business rules.
 - Reference feature-specific components.
-- Manage application runtime state.
 
 ## Evolution Rules
 
-Future serialization implementations may evolve internally while preserving compatibility with the architectural responsibilities defined in this contract.
+Future serializer implementations may introduce additional serialization formats, compatibility strategies, or encoding mechanisms while preserving the architectural responsibilities defined in this contract.
 
-Changes to serialization formats should prioritize backward compatibility whenever practical.
+Implementation-specific serialization details should remain isolated behind stable platform interfaces.
