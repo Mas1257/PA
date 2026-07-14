@@ -15,6 +15,7 @@ The Workspace subsystem shall:
 - Manage workspace state.
 - Coordinate workspace lifecycle.
 - Maintain workspace consistency.
+- Coordinate shared platform state.
 - Expose workspace services to platform modules.
 - Support future workspace extensions.
 
@@ -52,7 +53,6 @@ Workspace may depend on:
 
 - Storage.
 - Backup.
-- Cloud.
 - Platform infrastructure.
 
 Workspace must not depend on:
