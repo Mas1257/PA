@@ -13,6 +13,7 @@ Every architectural decision should remain consistent with the principles define
 The PA platform is built upon the following principles:
 
 - Separation of responsibilities.
+- Contract-driven architecture.
 - Platform-first architecture.
 - Feature independence.
 - Stable architectural boundaries.
@@ -34,6 +35,8 @@ Platform infrastructure provides reusable services for every feature.
 Features implement user-facing capabilities but must remain independent from one another.
 
 Platform components must never depend on feature implementations.
+
+Features are temporary. Platform is permanent.
 
 ## Contracts
 
@@ -60,3 +63,5 @@ Existing architectural contracts should remain stable as the platform grows.
 The architecture is intended to support continuous expansion while preserving consistency, modularity, and implementation independence.
 
 Future platform capabilities should integrate without requiring architectural redesign.
+
+Platform capabilities should evolve without requiring feature rewrites whenever practical.
