@@ -44,7 +44,7 @@ The Backup subsystem guarantees:
 - Reliable backup restoration.
 - Consistent recovery behavior.
 - Platform-independent backup formats.
-- Stable backup contracts.
+- Stable backup interfaces.
 
 ## Allowed Dependencies
 
