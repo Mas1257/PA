@@ -21,7 +21,7 @@ The platform consists of several foundational components.
 - Runtime
 - User Interface
 - Storage
-- Workspace State
+- Workspace
 - Folder Management
 - Configuration
 - Shared Services
