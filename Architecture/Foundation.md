@@ -8,6 +8,18 @@ It establishes the core architectural principles, system boundaries, dependency 
 
 Every architectural decision should remain consistent with the principles defined in this document.
 
+## Documentation Philosophy
+
+The PA repository is organized into three distinct layers, each with a different purpose.
+
+Architecture documents define the principles and rules that govern the entire platform. They apply to both current and future implementations.
+
+Contracts define the intended architectural boundaries for each platform subsystem. They describe the target architecture that future refactoring should achieve, not necessarily the current state of the implementation.
+
+Knowledge documents describe how the platform and its subsystems actually behave in the current implementation. They reflect what exists today rather than what is planned.
+
+This separation allows the repository to serve both as a description of the current system and as a specification for its future evolution.
+
 ## Core Principles
 
 The PA platform is built upon the following principles:
