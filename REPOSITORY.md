@@ -29,6 +29,11 @@ Tasks             Tasks/
    v
 Source            Source/Tampermonkey/PA.user.js
                   The implementation.
+
+Archive           Archive/
+                  Historical documents from earlier project phases,
+                  preserved for reference. Not part of the active
+                  documentation set.
 ```
 
 ## How to Read This Repository
@@ -88,6 +93,13 @@ new document, it must pass one test:
 
 If the answer is no, do not create it. The governance structure is considered
 complete. The next work is execution, not documentation.
+
+## Archive
+
+The `Archive/` directory preserves documents from earlier stages of the project.
+These are historical references, not active documentation. They are not consulted
+during development and are not maintained. The active documentation set is
+everything outside `Archive/`.
 
 ## Current State
 
