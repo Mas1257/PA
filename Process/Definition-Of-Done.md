@@ -40,6 +40,20 @@ no trailing period, focused scope).
 `Tasks/` file, which is traceable to a phase in the Master Plan. No direct change
 to `PA.user.js` is made that is not fed by a planned task.
 
+## No Speculative Documentation
+
+A new document or ADR is created only when execution hits a real obstacle that no
+existing document answers. Documentation is not written because it "might be useful
+later."
+
+This keeps governance fed by real experience rather than prediction. A document
+born from an actual blocker earns its maintenance cost; a document born from
+speculation becomes debt.
+
+When a phase is in progress and a genuine gap appears — a decision with no ADR,
+a rule with no home, an obstacle no task covers — that is the moment to write.
+Not before.
+
 ## Rule
 
 From this point forward, no change is made directly to `PA.user.js` unless it is
