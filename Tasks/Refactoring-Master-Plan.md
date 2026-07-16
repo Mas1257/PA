@@ -18,8 +18,16 @@ Do not begin any task until Phase 0 is complete.
 
 Each phase has an entry condition and an exit condition. A phase may not begin
 until the previous phase's exit condition is met. The exit condition for every
-phase includes: the full smoke test in `Verification-And-Smoke-Test.md` passes
-with no regressions.
+phase includes: the appropriate tier of the smoke test in
+`Verification-And-Smoke-Test.md` passes with no regressions.
+
+Testing is tiered to keep development fast:
+
+- **Core** (~10 scenarios) runs after every task or commit within a phase.
+- **Extended** (full checklist) runs at the end of each phase.
+- **Full Regression** (full checklist plus performance) runs before any release.
+
+The tier definitions live in `Verification-And-Smoke-Test.md`.
 
 ---
 
@@ -27,14 +35,58 @@ with no regressions.
 
 **Goal:** Establish the safety net before any code changes.
 
-**Tasks:**
+Execute in this order. Freeze first, so the baseline is anchored to an exact,
+recoverable point before anything else is measured.
 
-1. Complete the Baseline Snapshot (Section A of Verification-And-Smoke-Test.md).
-2. Run the full Smoke Test Checklist and confirm the current build passes it
-   (Section B).
-3. Record the Performance Baseline (Section C).
+### Phase 0.1 — Freeze Baseline
 
-**Exit condition:** All three sections recorded. This is the reference state.
+Tag the current commit in Git as `pre-refactor-baseline`. Record in
+`Verification-And-Smoke-Test.md`:
+
+- The tag's commit SHA.
+- Browser name and version.
+- Tampermonkey version.
+- Operating system.
+- Screen resolution.
+
+This anchors every later comparison to a known state. If a regression is ever
+suspected, this is the point to diff against.
+
+### Phase 0.2 — Smoke Test
+
+Run the full checklist once. For each scenario record one of three results,
+not just pass or fail:
+
+- Pass — works as expected.
+- Pass with known issue — works, but with a noted imperfection.
+- Fail — does not work.
+
+Record a note for every non-clean result. These notes are baseline behavior:
+a "Pass with known issue" today is not a regression if it persists, but a new
+issue after a refactor is. A "Fail" today (e.g. bridge server unreachable in the
+test environment) is documented so it is not mistaken for a refactor-caused break.
+
+### Phase 0.3 — Performance Baseline
+
+Measure the five metrics most likely to change during refactoring:
+
+- Panel open time.
+- Render time for a folder with ~100 barcodes.
+- Render time for a folder with ~500 barcodes.
+- Export time.
+- Import time.
+
+Other metrics can be added later if a specific refactor warrants them.
+
+### After Phase 0
+
+Do not proceed directly to Phase 1. First review the Phase 0.2 results. The
+smoke test may reveal that some bugs are more important than the review
+suggested, or that some assumptions need revising. If nothing new surfaces,
+proceed to Phase 1.
+
+**Exit condition:** Baseline tagged and recorded, smoke test run with three-state
+results and notes, performance baseline recorded, Phase 0.2 results reviewed.
 
 **Blocker for:** All other phases.
 
