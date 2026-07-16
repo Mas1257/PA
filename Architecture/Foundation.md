@@ -19,6 +19,8 @@ The PA platform is built upon the following principles:
 - Stable architectural boundaries.
 - Replaceable implementations.
 - Long-term maintainability.
+- User-first design.
+- Performance as a core value.
 
 ## Architectural Layers
 
