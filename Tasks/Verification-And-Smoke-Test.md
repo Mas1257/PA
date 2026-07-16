@@ -15,6 +15,54 @@ introduced a regression.
 
 ---
 
+## Freeze Record
+
+Before the first refactor, tag the current commit as `pre-refactor-baseline` and
+record the exact environment here. All later comparisons diff against this point.
+
+```
+Baseline tag        pre-refactor-baseline
+Commit SHA          (fill in when tagged)
+Browser             (fill in: name and version)
+Tampermonkey        (fill in: version)
+Operating system    (fill in)
+Screen resolution   (fill in)
+Date recorded       (fill in)
+```
+
+## Result States
+
+For each smoke test scenario, record one of three states, not just pass/fail:
+
+- **Pass** — works as expected.
+- **Pass with known issue** — works, but with a noted imperfection. Record the note.
+- **Fail** — does not work. Record why.
+
+A known issue or failure recorded at baseline is not a regression if it persists.
+A new issue appearing after a refactor is a regression. The notes are what make
+this distinction possible.
+
+## Test Tiers
+
+Not every scenario runs on every change. Tiers keep development fast:
+
+**Core tier** (run after every task or commit within a phase):
+- Create barcode
+- Edit barcode
+- Delete barcode
+- Print via browser
+- Import
+- Export
+- Create note
+- Create bookmark
+- Todo reminder
+- Workspace connect
+
+**Extended tier** (run at the end of each phase): the full checklist in Section B.
+
+**Full regression** (run before any release): the full checklist plus the
+performance baseline in Section C.
+
 ## A. Baseline Snapshot
 
 Before the first refactor, record the current behavior of each subsystem. This
