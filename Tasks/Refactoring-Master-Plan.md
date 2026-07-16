@@ -241,5 +241,8 @@ Full smoke test and performance baseline pass. This is the final phase.
    commit per phase.
 5. If a smoke test fails after a task, fix it before moving on. Do not accumulate
    regressions.
-6. The core logic of every feature is sound. This plan changes structure, not
-   behavior. Any behavior change is a bug, not an improvement.
+6. The current reviews found no evidence of fundamental flaws in the core
+   feature logic. The primary objective of this plan is to improve structure,
+   maintainability, and architectural consistency while preserving existing
+   behavior. Any intentional behavior change must be explicitly documented and
+   justified.
