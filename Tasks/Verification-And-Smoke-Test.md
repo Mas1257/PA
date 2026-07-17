@@ -63,6 +63,40 @@ Not every scenario runs on every change. Tiers keep development fast:
 **Full regression** (run before any release): the full checklist plus the
 performance baseline in Section C.
 
+## Baseline Results — Recorded 2026-07-16
+
+Results from the first full baseline run on the freeze environment
+(Chrome 150, Tampermonkey 5.50, Windows 10, tag `pre-refactor-baseline`).
+
+### Workspace — all Pass
+
+- Connect: Pass. Folder selected, state indicator turns green.
+- Disconnect: Pass. State indicator turns red.
+- Permission after full Chrome restart: Pass with note. On restart, PA
+  reconnected automatically from stored settings and showed active green
+  state without any user action. After a manual disconnect and reconnect,
+  re-selecting the previous backup folder required granting permissions
+  again, then connected successfully.
+- Auto snapshot: Pass. Snapshot files created after data changes.
+- Restore: Pass. Verified today — snapshot data restored successfully
+  after reconnect.
+- Rotation: Pass. Backups folder contains exactly 10 files.
+
+### Backup — Pass (partial coverage)
+
+- Export: Pass. Manual export produced a .pa file without errors.
+- Import: Pass. Manual import restored data without errors.
+- Import on fresh browser profile: Not yet tested (deferred).
+- Legacy JSON import: Not yet tested (deferred).
+
+### Remaining categories
+
+Barcode, Notebook, Todo, Bookmark, Folder, Settings, Search scenarios:
+reported working correctly in general use on the baseline build; detailed
+per-scenario evidence to be captured incrementally during Phase 1+ core-tier
+runs. Any deviation found later against this build is not a refactor
+regression if it reproduces on the `pre-refactor-baseline` tag.
+
 ## A. Baseline Snapshot
 
 Before the first refactor, record the current behavior of each subsystem. This
