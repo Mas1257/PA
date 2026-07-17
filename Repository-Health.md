@@ -27,15 +27,15 @@ It is small and discrete, so it is kept accurate by hand.
 
 ```
 Phase 0   Baseline and Verification         [x] complete
-Phase 1   Platform Foundation               [~] in progress (utilities relocated)
-Phase 1.5 Cross-Cutting Standardization      [ ] not started
+Phase 1   Platform Foundation               [x] complete
+Phase 1.5 Cross-Cutting Standardization      [~] in progress
 Phase 2   Critical Bug Fixes                [ ] not started
 Phase 3   Architectural Refactoring         [ ] not started
 Phase 4   Platform Cleanup                  [ ] not started
 Phase 5   Large Complexity Reduction        [ ] not started
 ```
 
-Completed phases: 1 / 6 (counting Phase 1.5 within the sequence, 7 stages total).
+Completed phases: 2 / 6 (counting Phase 1.5 within the sequence, 7 stages total).
 
 ## Technical Debt
 
