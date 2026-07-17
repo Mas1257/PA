@@ -97,6 +97,24 @@ per-scenario evidence to be captured incrementally during Phase 1+ core-tier
 runs. Any deviation found later against this build is not a refactor
 regression if it reproduces on the `pre-refactor-baseline` tag.
 
+## Performance Baseline — Recorded 2026-07-16
+
+Measured on the freeze environment (Chrome 150, Tampermonkey 5.50, Windows 10,
+tag `pre-refactor-baseline`). Values are perceived timings from real use, not
+instrumented measurements. The refactoring bar is simple: these should not get
+noticeably worse.
+
+- Panel open: instant (no perceptible delay).
+- Large barcode folder render: instant, no pause — folder cache makes
+  opening immediate.
+- Export: smooth, roughly one to two seconds from click to download.
+- Import: smooth, roughly one to two seconds from file selection to completion.
+- Snapshot restore: smooth, roughly one to two seconds.
+
+Regression threshold: any of these becoming perceptibly slow (multi-second
+delays, visible rendering pauses) after a refactor is a regression and blocks
+the task under the Definition of Done.
+
 ## A. Baseline Snapshot
 
 Before the first refactor, record the current behavior of each subsystem. This
