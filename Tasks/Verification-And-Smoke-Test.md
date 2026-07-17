@@ -22,12 +22,12 @@ record the exact environment here. All later comparisons diff against this point
 
 ```
 Baseline tag        pre-refactor-baseline
-Commit SHA          (fill in when tagged)
-Browser             (fill in: name and version)
-Tampermonkey        (fill in: version)
-Operating system    (fill in)
-Screen resolution   (fill in)
-Date recorded       (fill in)
+Commit SHA          17e7f83fd7b268dc2ccd58d98c767d9e09dc1b54
+Browser             Chrome 150.0.7871.129 (Official Build) (64-bit)
+Tampermonkey        5.50
+Operating system    Windows 10 Enterprise 22H2 64-bit
+Screen resolution   1920x1080
+Date recorded       2026-07-16
 ```
 
 ## Result States
