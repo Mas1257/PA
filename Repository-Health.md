@@ -27,7 +27,7 @@ It is small and discrete, so it is kept accurate by hand.
 
 ```
 Phase 0   Baseline and Verification         [x] complete
-Phase 1   Platform Foundation               [ ] not started
+Phase 1   Platform Foundation               [~] in progress (utilities relocated)
 Phase 1.5 Cross-Cutting Standardization      [ ] not started
 Phase 2   Critical Bug Fixes                [ ] not started
 Phase 3   Architectural Refactoring         [ ] not started
