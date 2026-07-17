@@ -26,7 +26,7 @@ The phase tracker below is the primary source of truth for project status.
 It is small and discrete, so it is kept accurate by hand.
 
 ```
-Phase 0   Baseline and Verification         [ ] not started
+Phase 0   Baseline and Verification         [~] in progress (0.1 done)
 Phase 1   Platform Foundation               [ ] not started
 Phase 1.5 Cross-Cutting Standardization      [ ] not started
 Phase 2   Critical Bug Fixes                [ ] not started
