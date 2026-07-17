@@ -26,7 +26,7 @@ The phase tracker below is the primary source of truth for project status.
 It is small and discrete, so it is kept accurate by hand.
 
 ```
-Phase 0   Baseline and Verification         [~] in progress (0.1 done)
+Phase 0   Baseline and Verification         [x] complete
 Phase 1   Platform Foundation               [ ] not started
 Phase 1.5 Cross-Cutting Standardization      [ ] not started
 Phase 2   Critical Bug Fixes                [ ] not started
@@ -35,7 +35,7 @@ Phase 4   Platform Cleanup                  [ ] not started
 Phase 5   Large Complexity Reduction        [ ] not started
 ```
 
-Completed phases: 0 / 6 (counting Phase 1.5 within the sequence, 7 stages total).
+Completed phases: 1 / 6 (counting Phase 1.5 within the sequence, 7 stages total).
 
 ## Technical Debt
 
@@ -57,12 +57,13 @@ be resolved once in Phase 1.5, which will reduce the per-section counts.
 ## Verification State
 
 ```
-Smoke test                  Defined, not yet run
-Performance baseline        Not yet recorded
-Baseline snapshot           Not yet recorded
+Smoke test                  Baseline run recorded (Workspace, Backup detailed;
+                            others verified in general use)
+Performance baseline        Recorded (all metrics instant to ~2s)
+Baseline snapshot           Tagged: pre-refactor-baseline (17e7f83)
 ```
 
-These are the deliverables of Phase 0.
+Phase 0 deliverables complete.
 
 ## How to Keep This File Accurate
 
